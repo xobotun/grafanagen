@@ -1,7 +1,11 @@
 package com.xobotun.grafanagen.model.grafana
 
+import com.xobotun.grafanagen.model.grafana.panel.AbstractPanel
+
 /**
  * Core Grafana entity.
+ * [Source](https://github.com/grafana/grafana/blob/v6.2.x/public/app/features/dashboard/state/DashboardModel.ts#L27-L50)
+ * that has possibly all persisted fields.
  *
  * Documenation example:
  * ```
@@ -44,6 +48,10 @@ data class Dashboard(
     val uid: String,
     /** Title of dashboard. */
     val title: String,
+    /** TODO: figure out. Possibly a flag that enables auto-refreshing at [refresh] interval. */
+    val autoUpdate: Any,
+    /** Description of dashboard. */
+    val description: String,
     /** Tags associated with dashboard. */
     val tags: List<String>,
     /** Theme of dashboard, i.e. `dark` or `light`. TODO: look up the theme list. */
@@ -56,22 +64,28 @@ data class Dashboard(
     val hideControls: Boolean,
     /** Dashboard crosshair behaviour. See [GraphTooltip] */
     val graphTooltip: GraphTooltip,
-    /** The widget list, the heart of Grafana */
-    val panels: List<Any>,
     /** Time range for dashboard, i.e. last 6 hours, last 7 days, etc. */
     val time: TimeInterval,
     /** timepicker metadata, see timepicker section for details. TODO */
     val timepicker: TimePicker,
     /** templating metadata, see templating section for details. TODO */
-    val templating: Any,
+    val templating: Templating,
     /** annotations metadata, see annotations section for details. TODO */
     val annotations: Any,
     /** Auto-refresh interval. TODO: find out the format. */
     val refresh: String,
+    /** TODO: not sure if we need it at all. */
+    val snapshot: Any,
     /** Version of the JSON schema (integer), incremented each time a Grafana update brings changes to said schema. TODO: figure out our schema version. Enum maybe? */
     val schemaVersion: String,
     /** Version of the dashboard (integer), incremented each time the dashboard is updated. */
     val version: String,
+    /** TODO: Another [version] field maybe? Figure out. */
+    val revision: Any,
     /** Links to other dashboards and useful intranet links. */
     val links: List<String>,
+    /** TODO: figure out. Something internal, for sure. Or something federated. Or something g<rafana.>netId for sharing. */
+    val gnetId: Any?,
+    /** The widget list, the heart of Grafana */
+    val panels: List<AbstractPanel>,
 )
