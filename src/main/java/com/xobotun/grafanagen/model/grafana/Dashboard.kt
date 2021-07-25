@@ -70,8 +70,8 @@ data class Dashboard(
     val timepicker: TimePicker,
     /** templating metadata, see templating section for details. TODO */
     val templating: Templating,
-    /** annotations metadata, see annotations section for details. TODO */
-    val annotations: Any,
+    /** annotations metadata, see annotations section for details. TODO: Source shows it is `{ list: any[] }`, much like [templating]. Maybe needs rework. */
+    val annotations: List<Annotation>,
     /** Auto-refresh interval. TODO: find out the format. */
     val refresh: String,
     /** TODO: not sure if we need it at all. */
