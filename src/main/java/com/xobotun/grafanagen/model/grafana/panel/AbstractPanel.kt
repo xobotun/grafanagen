@@ -42,3 +42,18 @@ abstract class AbstractPanel(
     /** Widget's type that determines its' fields and display mode. TODO: get a list of non-plugins types somewhere. */
     abstract val type: String
 }
+
+//cacheTimeout
+//content
+//datasource
+//gridPos
+//id
+//links
+//mode
+//options
+//pluginVersion
+//targets
+//timeFrom
+//timeShift
+//title
+//type
