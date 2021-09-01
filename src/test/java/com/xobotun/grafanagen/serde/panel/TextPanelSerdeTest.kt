@@ -35,11 +35,14 @@ private val rawTextPanel1 = """
 """.trimIndent()
 
 private val dtoTextPanel1 = TextPanel(
-    id = 2,
+    cacheTimeout = null,
+    content = "Some content",
+    datasource = "TestData DB",
     gridPos = PanelDimensions(x = 0, y = 0, w = 12, h = 9),
+    id = 2,
+    mode = TextPanel.Mode.HTML.shownName,
+    targets = null, // TODO
     title = "Panel Title",
-    mode = TextPanel.Mode.HTML,
-    content = "Some content"
 )
 
 val textPanel1 = SerdeExample.of("Text Panel 1", dtoTextPanel1, rawTextPanel1)

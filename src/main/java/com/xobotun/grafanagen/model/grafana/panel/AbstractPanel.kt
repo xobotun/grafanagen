@@ -1,59 +1,48 @@
 package com.xobotun.grafanagen.model.grafana.panel
 
+import com.xobotun.grafanagen.model.grafana.PluginVersion
+
 /**
  * An abstract widget with bare minumum of fields.
  *
  * [Source](https://github.com/grafana/grafana/blob/v6.2.x/public/app/features/dashboard/state/PanelModel.ts#L78-L110)
  *
  */
-abstract class AbstractPanel(
+interface AbstractPanel {
     /** Widget's id on the dashboard? TODO */
-    val id: Int,
+    val id: Int
     /** Widget's bounding box. */
-    val gridPos: PanelDimensions,
-    /** Widget's title. */
-    val title: String,
-    val alert: Any? = null,
-    val scopedVars: Any? = null,
-    val repeat: String? = null,
-    val repeatIteration: Int? = null,
-    val repeatPanelId: Int? = null,
-    val repeatDirection: String? = null,
-    val repeatedByRow: Boolean? = null,
-    val maxPerRow: Int? = null,
-    val collapsed: Boolean? = null,
-    val panels: Any? = null,
-    val soloMode: Boolean? = null,
-    val targets: Any? = null,
-    val datasource: String? = null,
-    val thresholds: Any? = null,
-    val pluginVersion: String? = null,
-    val snapshotData: Any? = null,
-    val timeFrom: Any? = null,
-    val timeShift: Any? = null,
-    val hideTimeOverride: Any? = null,
-    val options: Any? = null,
-    val maxDataPoints: Int? = null,
-    val interval: String? = null,
-    val description: String? = null,
-    val links: List<Any>? = null,
-    val transparent: Boolean = false,
-) {
+    val gridPos: PanelDimensions
     /** Widget's type that determines its' fields and display mode. TODO: get a list of non-plugins types somewhere. */
-    abstract val type: String
-}
+    val type: String
+    /** Widget's title. */
+    val title: String
 
-//cacheTimeout
-//content
-//datasource
-//gridPos
-//id
-//links
-//mode
-//options
-//pluginVersion
-//targets
-//timeFrom
-//timeShift
-//title
-//type
+    val alert: Any?              get() = null
+    val scopedVars: Any?         get() = null
+    val repeat: String?          get() = null
+    val repeatIteration: Int?    get() = null
+    val repeatPanelId: Int?      get() = null
+    val repeatDirection: String? get() = null
+    val repeatedByRow: Boolean?  get() = null
+    val maxPerRow: Int?          get() = null
+    val collapsed: Boolean?      get() = null
+    val panels: Any?             get() = null
+    val soloMode: Boolean?       get() = null
+    val targets: Any?            get() = null
+    val datasource: String?      get() = null
+    val thresholds: Any?         get() = null
+    val pluginVersion: String?   get() = PluginVersion.GRAFANA
+    val snapshotData: Any?       get() = null
+    val timeFrom: Any?           get() = null
+    val timeShift: Any?          get() = null
+    val hideTimeOverride: Any?   get() = null
+    val options: Any?            get() = Object()
+    val maxDataPoints: Int?      get() = null
+    val interval: String?        get() = null
+    val description: String?     get() = null
+    val links: List<Any>?        get() = emptyList()
+    val transparent: Boolean     get() = false
+
+    val cacheTimeout: Any?       get() = null
+}
