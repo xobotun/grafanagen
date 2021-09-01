@@ -41,7 +41,7 @@ class SerdeTest {
         val expectedMap = expected.asJsonObject.asMap()
 
         val difference = Maps.difference(expectedMap, actualMap)
-        throw AssertionError(difference.toString())
+        if (!difference.areEqual()) throw AssertionError(difference.toString())
     }
 
     /**

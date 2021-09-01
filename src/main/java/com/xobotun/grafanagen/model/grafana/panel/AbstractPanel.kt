@@ -1,5 +1,6 @@
 package com.xobotun.grafanagen.model.grafana.panel
 
+import com.xobotun.grafanagen.model.grafana.DataTarget
 import com.xobotun.grafanagen.model.grafana.PluginVersion
 
 /**
@@ -18,31 +19,29 @@ interface AbstractPanel {
     /** Widget's title. */
     val title: String
 
-    val alert: Any?              get() = null
-    val scopedVars: Any?         get() = null
-    val repeat: String?          get() = null
-    val repeatIteration: Int?    get() = null
-    val repeatPanelId: Int?      get() = null
-    val repeatDirection: String? get() = null
-    val repeatedByRow: Boolean?  get() = null
-    val maxPerRow: Int?          get() = null
-    val collapsed: Boolean?      get() = null
-    val panels: Any?             get() = null
-    val soloMode: Boolean?       get() = null
-    val targets: Any?            get() = null
-    val datasource: String?      get() = null
-    val thresholds: Any?         get() = null
-    val pluginVersion: String?   get() = PluginVersion.GRAFANA
-    val snapshotData: Any?       get() = null
-    val timeFrom: Any?           get() = null
-    val timeShift: Any?          get() = null
-    val hideTimeOverride: Any?   get() = null
-    val options: Any?            get() = Object()
-    val maxDataPoints: Int?      get() = null
-    val interval: String?        get() = null
-    val description: String?     get() = null
-    val links: List<Any>?        get() = emptyList()
-    val transparent: Boolean     get() = false
-
-    val cacheTimeout: Any?       get() = null
+    val alert: Any?                get() = null
+    val scopedVars: Any?           get() = null
+    val repeat: String?            get() = null
+    val repeatIteration: Int?      get() = null
+    val repeatPanelId: Int?        get() = null
+    val repeatDirection: String?   get() = null
+    val repeatedByRow: Boolean?    get() = null
+    val maxPerRow: Int?            get() = null
+    val collapsed: Boolean?        get() = null
+    val panels: Any?               get() = null
+    val soloMode: Boolean?         get() = null
+    val targets: List<DataTarget>? get() = null
+    val datasource: String?        get() = null
+    val thresholds: Any?           get() = null
+    val pluginVersion: String?     get() = PluginVersion.GRAFANA
+    val snapshotData: Any?         get() = null
+    val timeFrom: Any?             get() = null
+    val timeShift: Any?            get() = null
+    val hideTimeOverride: Any?     get() = null
+    val options: Any?              get() = Object()
+    val maxDataPoints: Int?        get() = null
+    val interval: String?          get() = null
+    val description: String?       get() = null
+    val links: List<Any>?          get() = emptyList()
+    val transparent: Boolean       get() = false
 }
