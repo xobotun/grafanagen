@@ -9,6 +9,7 @@ import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.google.gson.internal.LinkedTreeMap
+import com.xobotun.grafanagen.serde.panel.graphPanel1
 
 class SerdeTest {
     private val gson = Gson()
@@ -19,7 +20,8 @@ class SerdeTest {
      */
     @TestFactory
     fun testSerialization() = listOf(
-        textPanel1
+        textPanel1,
+        graphPanel1
     ).map {
         DynamicTest.dynamicTest("${it.name} should serialize correctly") {
             val parsed = JsonParser.parseString(it.raw)
