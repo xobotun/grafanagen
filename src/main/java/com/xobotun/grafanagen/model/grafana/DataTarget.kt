@@ -14,18 +14,18 @@ interface AbstractDataTarget {
 }
 
 /**
- * Grafana built-in datatarget. Provides a graph widget with a generic data series.
+ * Grafana built-in datatarget. Provides a widget with a generic data series.
  */
-data class GrafanaGraphGenericDataTarget(
+data class GrafanaGenericDataTarget(
     override val refId: String = "A",
     val scenarioId: String = "random_walk",
     val stringInput: String? = null
 ): AbstractDataTarget
 
 /**
- * Prometheus-related datatarget for graphs. Should also suit VictoriaMetrics, as they seem to share the protocol.
+ * Prometheus-related datatarget. Should also suit VictoriaMetrics, as they seem to share the protocol.
  */
-data class PrometheusGraphDataTarget(
+data class PrometheusDataTarget(
     override val refId: String = "A",
     /** Prometheus query. */
     val expr: String,

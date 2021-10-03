@@ -1,7 +1,7 @@
 package com.xobotun.grafanagen.model.grafana.panel
 
 import com.xobotun.grafanagen.model.grafana.AbstractDataTarget
-import com.xobotun.grafanagen.model.grafana.GrafanaGraphGenericDataTarget
+import com.xobotun.grafanagen.model.grafana.GrafanaGenericDataTarget
 
 /**
  * A graph panel. Has default state declared [here](https://github.com/grafana/grafana/blob/v6.2.x/public/app/plugins/panel/graph/module.ts#L32).
@@ -22,7 +22,7 @@ data class GraphPanel(
     override val collapsed: Boolean? = null,
     override val panels: Any? = null,
     override val soloMode: Boolean? = null,
-    override val targets: List<AbstractDataTarget>? = listOf(GrafanaGraphGenericDataTarget()),
+    override val targets: List<AbstractDataTarget>? = listOf(GrafanaGenericDataTarget()),
     override val datasource: String? = null,
     override val thresholds: List<Any>? = emptyList(),
     override val pluginVersion: String? = null,
@@ -35,7 +35,7 @@ data class GraphPanel(
     override val interval: String? = null,
     override val description: String? = null,
     override val links: List<Any>? = null,
-    override val transparent: Boolean = false,
+    override val transparent: Boolean? = null,
 
     /** TODO: comments */
     val aliasColors: Any? = Unit,
@@ -74,7 +74,7 @@ data class GraphLegend(
     val current: Boolean = false,
     val max: Boolean = false,
     val min: Boolean = false,
-    val show: Boolean = false,
+    val show: Boolean = true,
     val total: Boolean = false,
     val values: Boolean = false,
 )

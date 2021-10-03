@@ -1,7 +1,6 @@
 package com.xobotun.grafanagen.model.grafana.panel
 
 import com.xobotun.grafanagen.model.grafana.AbstractDataTarget
-import com.xobotun.grafanagen.model.grafana.GrafanaGraphGenericDataTarget
 import com.xobotun.grafanagen.model.grafana.PluginVersion
 
 /**
@@ -44,5 +43,5 @@ interface AbstractPanel {
     val interval: String?          get() = null
     val description: String?       get() = null
     val links: List<Any>?          get() = emptyList()
-    val transparent: Boolean       get() = false
+    val transparent: Boolean?      get() = false
 }

@@ -1,7 +1,6 @@
 package com.xobotun.grafanagen.model.grafana.panel
 
 import com.xobotun.grafanagen.model.grafana.AbstractDataTarget
-import com.xobotun.grafanagen.model.grafana.GrafanaGraphGenericDataTarget
 import com.xobotun.grafanagen.model.grafana.PluginVersion
 
 /**
@@ -37,7 +36,7 @@ data class TextPanel(
     override val interval: String? = null,
     override val description: String? = null,
     override val links: List<Any>? = emptyList(),
-    override val transparent: Boolean = false,
+    override val transparent: Boolean? = null, // null and false are the same
 
     /** Text display mode. */
     val mode: String = Mode.MARKDOWN.shownName,

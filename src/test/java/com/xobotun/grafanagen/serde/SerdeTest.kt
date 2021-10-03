@@ -2,13 +2,10 @@ package com.xobotun.grafanagen.serde
 
 import com.google.common.collect.MapDifference
 import com.google.common.collect.Maps
+import com.google.gson.*
 import com.xobotun.grafanagen.serde.panel.textPanel1
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
-import com.google.gson.Gson
-import com.google.gson.JsonElement
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import com.google.gson.internal.LinkedTreeMap
 import com.xobotun.grafanagen.serde.panel.graphPanel1
 import com.xobotun.grafanagen.serde.panel.graphPanel2
@@ -51,33 +48,29 @@ class SerdeTest {
 
     /**
      * Accesses an internal map so there's no need to call [JsonObject.entrySet] to construct another map from it.
-     * Omits null values.
-     * Treats `transparent` set to `false` as `null`. TODO: move it to some kind of equivalency classes out of this method. It does not belong here.
+     * Recursively omits null values.
      */
-    private fun JsonObject.asMap() = this.let {
+    private fun JsonObject.asMap(): Map<String, Any> = this.let {
         val innerTree = JsonObject::class.java.getDeclaredField("members")
         innerTree.isAccessible = true
 
         return@let innerTree.get(this) as LinkedTreeMap<String, JsonElement>
     }
         .filterValues { !it.isJsonNull }
-        .toMutableMap()
-        .also {
-            it.removeKeyIfValueMatches("transparent") { (it?.isJsonPrimitive ?: false) && !it!!.asBoolean }
+        .mapValues { (k, v) -> when (v) {
+                is JsonObject -> v.asMap()
+                is JsonArray -> v.filterNotNull().map { if (it is JsonObject) it.asMap() else it }
+                else -> v
+            }
         }
-
-    private fun <K, V> MutableMap<K, V>.removeKeyIfValueMatches(key: K?, valueMatcher: (V?) -> Boolean) {
-        val value = this[key]
-        if (valueMatcher(value)) this.remove(key)
-    }
 
     private fun MapDifference<*, *>.toFineString(): String {
         if (areEqual()) return "Equal\n"
 
         val result = StringBuilder("Not equal:\n")
-        result.append(entriesOnlyOnLeft().toFineString("Only on left: "))
-        result.append(entriesOnlyOnRight().toFineString("Only on right: "))
-        result.append(entriesDiffering().toFineString("Keys present in both, but values are different"))
+        result.append(entriesOnlyOnLeft().toFineString("Only on left (expected): "))
+        result.append(entriesOnlyOnRight().toFineString("Only on right (actual): "))
+        result.append(entriesDiffering().toFineString("Keys present in both, but values are different (expected, actual): "))
 
         return result.toString()
     }
