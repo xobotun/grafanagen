@@ -27,9 +27,9 @@ data class GraphPanel(
     override val thresholds: List<Any>? = emptyList(),
     override val pluginVersion: String? = null,
     override val snapshotData: Any? = null,
-    override val timeFrom: Any? = null,
-    override val timeShift: Any? = null,
-    override val hideTimeOverride: Any? = null,
+    override val timeFrom: String? = null,
+    override val timeShift: String? = null,
+    override val hideTimeOverride: Boolean? = null,
     override val options: Any? = Object(),
     override val maxDataPoints: Int? = null,
     override val interval: String? = null,
@@ -44,6 +44,8 @@ data class GraphPanel(
     val dashes: Boolean = false,
     val fill: Int = 1, // Is that a 0/1 boolean?
     val legend: GraphLegend = GraphLegend(),
+    /** Precision in tooltips and legend. */
+    val decimals: Int? = null,
     val lines: Boolean = true,
     val linewidth: Int = 1,
     val nullPointMode: String = "null",
@@ -61,7 +63,11 @@ data class GraphPanel(
     val yaxes: List<GraphYAxisConfig> = listOf(GraphYAxisConfig(), GraphYAxisConfig()),
     val yaxis: GraphYAxesPairingConfig = GraphYAxesPairingConfig(),
 ) : AbstractPanel {
-
+    companion object NullPointMode {
+        const val NULL = "null"
+        const val CONNECTED = "connected"
+        const val NULL_AS_ZERO = "null as zero"
+    }
 }
 
 /**
@@ -77,6 +83,11 @@ data class GraphLegend(
     val show: Boolean = true,
     val total: Boolean = false,
     val values: Boolean = false,
+    val alignAsTable: Boolean? = null,
+    val rightSide: Boolean? = null,
+    val hideEmpty: Boolean? = null,
+    val hideZero: Boolean? = null,
+    val sideWidth: Int? = null // Present only when rightSide == true.
 )
 
 /**
@@ -84,9 +95,26 @@ data class GraphLegend(
  */
 data class GraphTooltip(
     val shared: Boolean = true,
-    val sort: Int = 0,
-    val value_type: String = "individual"
-)
+    val sort: Int = SortOrder.NONE,
+    val value_type: String = ValueType.INDIVIDUAL
+) {
+    class ValueType {
+        companion object {
+            /** Shows true values. */
+            const val INDIVIDUAL = "individual"
+            /** Sums up values (TODO: in order the series are displayed?). */
+            const val CUMULATIVE = "cumulative"
+        }
+    }
+    /** Affects only tooltip, not how the series are shown. */
+    class SortOrder {
+        companion object {
+            const val NONE = 0
+            const val INCREASING = 1
+            const val DECREASING = 2
+        }
+    }
+}
 
 /**
  * Configures visual appearance of the x axis.
@@ -105,11 +133,13 @@ data class GraphXAxisConfig(
  */
 data class GraphYAxisConfig(
     val format: String = "short",
-    val label: Any? = null,
-    val logBase: Int = 1,
-    val max: Any? = null,
-    val min: Any? = null,
+    val label: String? = null,
+    val logBase: Int = 1, // 1 for linear, others are 2, 10, 32 and 1024
+    val max: String? = null,
+    val min: String? = null,
     val show: Boolean = true,
+    /** Precision on the axis. */
+    val decimals: Int? = null,
 )
 
 /**
@@ -117,5 +147,5 @@ data class GraphYAxisConfig(
  */
 data class GraphYAxesPairingConfig(
     val align: Boolean = false,
-    val alignLevel: Any? = null
+    val alignLevel: Number? = null
 )

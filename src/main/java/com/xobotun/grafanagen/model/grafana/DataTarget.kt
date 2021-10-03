@@ -11,6 +11,7 @@ package com.xobotun.grafanagen.model.grafana
 interface AbstractDataTarget {
     /** Name by which this series is referenced to */
     val refId: String get() = "A"
+    val alias: String? get() = null
 }
 
 /**
@@ -18,6 +19,7 @@ interface AbstractDataTarget {
  */
 data class GrafanaGenericDataTarget(
     override val refId: String = "A",
+    override val alias: String? = null,
     val scenarioId: String = "random_walk",
     val stringInput: String? = null
 ): AbstractDataTarget
@@ -27,6 +29,7 @@ data class GrafanaGenericDataTarget(
  */
 data class PrometheusDataTarget(
     override val refId: String = "A",
+    override val alias: String? = null,
     /** Prometheus query. */
     val expr: String,
     val format: String = "time_series",

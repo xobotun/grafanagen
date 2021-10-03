@@ -7,4 +7,4 @@ package com.xobotun.grafanagen.util
  *   ${'$'} == $eq
  * """
  */
-const val eq = "\$eq"
+const val eq = '$'

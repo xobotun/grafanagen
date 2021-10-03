@@ -181,5 +181,5 @@ private val dtoGraphPanel2 = GraphPanel(
     title = "Panel Title",
 )
 
-val graphPanel1 = SerdeExample.of("Graph Panel 1", dtoGraphPanel1, rawGraphPanel1)
-val graphPanel2 = SerdeExample.of("Graph Panel 2", dtoGraphPanel2, rawGraphPanel2)
+val defaultGraphPanel1 = SerdeExample.of("Default graph panel 1", dtoGraphPanel1, rawGraphPanel1)
+val defaultGraphPanel2 = SerdeExample.of("Default graph panel 2", dtoGraphPanel2, rawGraphPanel2)
