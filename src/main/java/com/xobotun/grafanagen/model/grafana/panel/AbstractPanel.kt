@@ -32,7 +32,7 @@ interface AbstractPanel {
     val soloMode: Boolean?         get() = null
     val targets: List<DataTarget>? get() = null
     val datasource: String?        get() = null
-    val thresholds: Any?           get() = null
+    val thresholds: List<Any>?     get() = null
     val pluginVersion: String?     get() = PluginVersion.GRAFANA
     val snapshotData: Any?         get() = null
     val timeFrom: Any?             get() = null

@@ -169,7 +169,6 @@ private val rawGraphPanel2 = """
 """.trimIndent()
 
 private val dtoGraphPanel1 = GraphPanel(
-    datasource = "TestData DB",
     gridPos = PanelDimensions(x = 0, y = 0, w = 12, h = 8),
     id = 2,
     targets = listOf(DataTarget()),
@@ -177,7 +176,6 @@ private val dtoGraphPanel1 = GraphPanel(
 )
 
 private val dtoGraphPanel2 = GraphPanel(
-    datasource = "TestData DB",
     gridPos = PanelDimensions(x = 0, y = 0, w = 12, h = 8),
     id = 4,
     targets = listOf(DataTarget()),

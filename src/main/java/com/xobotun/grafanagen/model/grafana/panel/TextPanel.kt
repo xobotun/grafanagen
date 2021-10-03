@@ -25,7 +25,7 @@ data class TextPanel(
     override val soloMode: Boolean? = null,
     override val targets: List<DataTarget>? = null,
     override val datasource: String? = null,
-    override val thresholds: Any? = null,
+    override val thresholds: List<Any>? = null,
     override val pluginVersion: String? = PluginVersion.GRAFANA,
     override val snapshotData: Any? = null,
     override val timeFrom: Any? = null,
