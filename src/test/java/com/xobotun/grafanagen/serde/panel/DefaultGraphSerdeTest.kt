@@ -1,6 +1,7 @@
 package com.xobotun.grafanagen.serde.panel
 
 import com.xobotun.grafanagen.model.grafana.DataTarget
+import com.xobotun.grafanagen.model.grafana.panel.GraphPanel
 import com.xobotun.grafanagen.model.grafana.panel.PanelDimensions
 import com.xobotun.grafanagen.model.grafana.panel.TextPanel
 import com.xobotun.grafanagen.serde.SerdeExample
@@ -89,12 +90,10 @@ private val rawGraphPanel1 = """
     }
 """.trimIndent()
 
-private val dtoGraphPanel1 = TextPanel(
-    content = "Some content",
+private val dtoGraphPanel1 = GraphPanel(
     datasource = "TestData DB",
-    gridPos = PanelDimensions(x = 0, y = 0, w = 12, h = 9),
+    gridPos = PanelDimensions(x = 0, y = 0, w = 12, h = 8),
     id = 2,
-    mode = TextPanel.Mode.HTML.shownName,
     targets = listOf(DataTarget()),
     title = "Panel Title",
 )

@@ -1,5 +1,6 @@
 package com.xobotun.grafanagen.serde
 
+import com.google.common.collect.MapDifference
 import com.google.common.collect.Maps
 import com.xobotun.grafanagen.serde.panel.textPanel1
 import org.junit.jupiter.api.DynamicTest
@@ -43,7 +44,7 @@ class SerdeTest {
         val expectedMap = expected.asJsonObject.asMap()
 
         val difference = Maps.difference(expectedMap, actualMap)
-        if (!difference.areEqual()) throw AssertionError(difference.toString())
+        if (!difference.areEqual()) throw AssertionError(difference.toFineString())
     }
 
     /**
@@ -66,5 +67,25 @@ class SerdeTest {
     private fun <K, V> MutableMap<K, V>.removeKeyIfValueMatches(key: K?, valueMatcher: (V?) -> Boolean) {
         val value = this[key]
         if (valueMatcher(value)) this.remove(key)
+    }
+
+    private fun MapDifference<*, *>.toFineString(): String {
+        if (areEqual()) return "Equal\n"
+
+        val result = StringBuilder("Not equal:\n")
+        result.append(entriesOnlyOnLeft().toFineString("Only on left: "))
+        result.append(entriesOnlyOnRight().toFineString("Only on right: "))
+        result.append(entriesDiffering().toFineString("Keys present in both, but values are different"))
+
+        return result.toString()
+    }
+
+    private fun Map<*, *>.toFineString(header: String): String {
+        if (isEmpty()) return ""
+
+        val result = StringBuilder("$header\n")
+        forEach { (k, v) -> result.append("  $k = $v\n") }
+
+        return result.toString()
     }
 }
