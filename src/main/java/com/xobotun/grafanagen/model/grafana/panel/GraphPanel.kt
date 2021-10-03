@@ -1,7 +1,7 @@
 package com.xobotun.grafanagen.model.grafana.panel
 
-import com.xobotun.grafanagen.model.grafana.DataTarget
-import com.xobotun.grafanagen.model.grafana.PluginVersion
+import com.xobotun.grafanagen.model.grafana.AbstractDataTarget
+import com.xobotun.grafanagen.model.grafana.GrafanaGraphGenericDataTarget
 
 /**
  * A graph panel. Has default state declared [here](https://github.com/grafana/grafana/blob/v6.2.x/public/app/plugins/panel/graph/module.ts#L32).
@@ -22,7 +22,7 @@ data class GraphPanel(
     override val collapsed: Boolean? = null,
     override val panels: Any? = null,
     override val soloMode: Boolean? = null,
-    override val targets: List<DataTarget>? = null,
+    override val targets: List<AbstractDataTarget>? = listOf(GrafanaGraphGenericDataTarget()),
     override val datasource: String? = null,
     override val thresholds: List<Any>? = emptyList(),
     override val pluginVersion: String? = null,
@@ -116,6 +116,6 @@ data class GraphYAxisConfig(
  * TODO: have never used this piece.
  */
 data class GraphYAxesPairingConfig(
-    val align: Boolean = true,
+    val align: Boolean = false,
     val alignLevel: Any? = null
 )

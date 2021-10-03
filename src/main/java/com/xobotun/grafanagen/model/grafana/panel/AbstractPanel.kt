@@ -1,6 +1,7 @@
 package com.xobotun.grafanagen.model.grafana.panel
 
-import com.xobotun.grafanagen.model.grafana.DataTarget
+import com.xobotun.grafanagen.model.grafana.AbstractDataTarget
+import com.xobotun.grafanagen.model.grafana.GrafanaGraphGenericDataTarget
 import com.xobotun.grafanagen.model.grafana.PluginVersion
 
 /**
@@ -30,7 +31,7 @@ interface AbstractPanel {
     val collapsed: Boolean?        get() = null
     val panels: Any?               get() = null
     val soloMode: Boolean?         get() = null
-    val targets: List<DataTarget>? get() = null
+    val targets: List<AbstractDataTarget>? get() = null
     val datasource: String?        get() = null
     val thresholds: List<Any>?     get() = null
     val pluginVersion: String?     get() = PluginVersion.GRAFANA

@@ -1,6 +1,7 @@
 package com.xobotun.grafanagen.model.grafana.panel
 
-import com.xobotun.grafanagen.model.grafana.DataTarget
+import com.xobotun.grafanagen.model.grafana.AbstractDataTarget
+import com.xobotun.grafanagen.model.grafana.GrafanaGraphGenericDataTarget
 import com.xobotun.grafanagen.model.grafana.PluginVersion
 
 /**
@@ -23,7 +24,7 @@ data class TextPanel(
     override val collapsed: Boolean? = null,
     override val panels: Any? = null,
     override val soloMode: Boolean? = null,
-    override val targets: List<DataTarget>? = null,
+    override val targets: List<AbstractDataTarget>? = null,
     override val datasource: String? = null,
     override val thresholds: List<Any>? = null,
     override val pluginVersion: String? = PluginVersion.GRAFANA,

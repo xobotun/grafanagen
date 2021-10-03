@@ -1,9 +1,8 @@
 package com.xobotun.grafanagen.serde.panel
 
-import com.xobotun.grafanagen.model.grafana.DataTarget
+import com.xobotun.grafanagen.model.grafana.GrafanaGraphGenericDataTarget
 import com.xobotun.grafanagen.model.grafana.panel.GraphPanel
 import com.xobotun.grafanagen.model.grafana.panel.PanelDimensions
-import com.xobotun.grafanagen.model.grafana.panel.TextPanel
 import com.xobotun.grafanagen.serde.SerdeExample
 
 private val rawGraphPanel1 = """
@@ -171,14 +170,14 @@ private val rawGraphPanel2 = """
 private val dtoGraphPanel1 = GraphPanel(
     gridPos = PanelDimensions(x = 0, y = 0, w = 12, h = 8),
     id = 2,
-    targets = listOf(DataTarget()),
+    targets = listOf(GrafanaGraphGenericDataTarget()),
     title = "Panel Title",
 )
 
 private val dtoGraphPanel2 = GraphPanel(
     gridPos = PanelDimensions(x = 0, y = 0, w = 12, h = 8),
     id = 4,
-    targets = listOf(DataTarget()),
+    targets = listOf(GrafanaGraphGenericDataTarget()),
     title = "Panel Title",
 )
 
