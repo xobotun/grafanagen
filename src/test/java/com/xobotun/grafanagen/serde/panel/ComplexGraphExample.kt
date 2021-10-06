@@ -4,8 +4,8 @@ import com.xobotun.grafanagen.model.grafana.ColorUtil.rgb
 import com.xobotun.grafanagen.model.grafana.ColorUtil.rgba
 import com.xobotun.grafanagen.model.grafana.DashboardLink
 import com.xobotun.grafanagen.model.grafana.GrafanaGenericDataTarget
+import com.xobotun.grafanagen.model.grafana.NullPointMode
 import com.xobotun.grafanagen.model.grafana.panel.*
-import com.xobotun.grafanagen.model.grafana.panel.GraphPanel.NullPointMode
 import com.xobotun.grafanagen.model.grafana.panel.GraphTimeRegion.DayOfWeek.Companion.FRIDAY
 import com.xobotun.grafanagen.model.grafana.panel.GraphTimeRegion.DayOfWeek.Companion.THURSDAY
 import com.xobotun.grafanagen.serde.SerdeExample

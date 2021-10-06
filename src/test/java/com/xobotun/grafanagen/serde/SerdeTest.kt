@@ -3,13 +3,10 @@ package com.xobotun.grafanagen.serde
 import com.google.common.collect.MapDifference
 import com.google.common.collect.Maps
 import com.google.gson.*
-import com.xobotun.grafanagen.serde.panel.textPanel1
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 import com.google.gson.internal.LinkedTreeMap
-import com.xobotun.grafanagen.serde.panel.complexGraphPanel1
-import com.xobotun.grafanagen.serde.panel.defaultGraphPanel1
-import com.xobotun.grafanagen.serde.panel.defaultGraphPanel2
+import com.xobotun.grafanagen.serde.panel.*
 
 class SerdeTest {
     private val gson = Gson()
@@ -24,6 +21,7 @@ class SerdeTest {
         defaultGraphPanel1,
         defaultGraphPanel2,
         complexGraphPanel1,
+        complexSinglestatPanel1,
     ).map {
         DynamicTest.dynamicTest("${it.name} should serialize correctly") {
             val parsed = JsonParser.parseString(it.raw)

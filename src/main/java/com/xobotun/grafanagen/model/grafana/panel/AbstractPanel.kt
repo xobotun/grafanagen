@@ -22,18 +22,21 @@ interface AbstractPanel {
 
     val alert: Any?                get() = null
     val scopedVars: Any?           get() = null
+    /** Variable name to use for repeating the panel */
     val repeat: String?            get() = null
     val repeatIteration: Int?      get() = null
     val repeatPanelId: Int?        get() = null
+    /** Horizontal or vertical: "h" or "v" */
     val repeatDirection: String?   get() = null
     val repeatedByRow: Boolean?    get() = null
+    /** 2,3,4,6,12,24 */
     val maxPerRow: Int?            get() = null
     val collapsed: Boolean?        get() = null
     val panels: Any?               get() = null
     val soloMode: Boolean?         get() = null
     val targets: List<AbstractDataTarget>? get() = null
     val datasource: String?        get() = null
-    val thresholds: List<Any>?     get() = null
+    val thresholds: Any?           get() = null // Sometimes a list, sometimes a string...
     val pluginVersion: String?     get() = PluginVersion.GRAFANA
     val snapshotData: Any?         get() = null
     val timeFrom: Any?             get() = null

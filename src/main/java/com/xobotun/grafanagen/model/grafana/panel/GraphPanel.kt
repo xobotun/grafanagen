@@ -63,13 +63,7 @@ data class GraphPanel(
     val xaxis: GraphXAxisConfig = GraphXAxisConfig(),
     val yaxes: List<GraphYAxisConfig> = listOf(GraphYAxisConfig(), GraphYAxisConfig()),
     val yaxis: GraphYAxesPairingConfig = GraphYAxesPairingConfig(),
-) : AbstractPanel {
-    companion object NullPointMode {
-        const val NULL = "null"
-        const val CONNECTED = "connected"
-        const val NULL_AS_ZERO = "null as zero"
-    }
-}
+) : AbstractPanel
 
 /**
  * Defines what additional data will be shown near each legend entry.
