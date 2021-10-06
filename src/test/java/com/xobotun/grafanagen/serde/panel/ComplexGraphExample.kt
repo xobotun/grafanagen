@@ -1,8 +1,13 @@
 package com.xobotun.grafanagen.serde.panel
 
+import com.xobotun.grafanagen.model.grafana.ColorUtil.rgb
+import com.xobotun.grafanagen.model.grafana.ColorUtil.rgba
+import com.xobotun.grafanagen.model.grafana.DashboardLink
 import com.xobotun.grafanagen.model.grafana.GrafanaGenericDataTarget
 import com.xobotun.grafanagen.model.grafana.panel.*
 import com.xobotun.grafanagen.model.grafana.panel.GraphPanel.NullPointMode
+import com.xobotun.grafanagen.model.grafana.panel.GraphTimeRegion.DayOfWeek.Companion.FRIDAY
+import com.xobotun.grafanagen.model.grafana.panel.GraphTimeRegion.DayOfWeek.Companion.THURSDAY
 import com.xobotun.grafanagen.serde.SerdeExample
 import com.xobotun.grafanagen.util.eq
 
@@ -98,7 +103,7 @@ private val rawGraphPanel1 = """
       "from": "12:00",
       "fromDayOfWeek": 4,
       "line": true,
-      "lineColor": "rgba(199, 132, 124, 0.6)",
+      "lineColor": "rgba(199,132,124,0.6)",
       "op": "time",
       "to": "13:00",
       "toDayOfWeek": 5
@@ -180,6 +185,9 @@ private val dtoGraphPanel1 = GraphPanel(
     timeShift = "1m",
     interval = "25s",
     hideTimeOverride = false,
+    links = listOf(DashboardLink(keepTime = true, includeVars = true, targetBlank = true, dashboard = "test", title = "title", params = "testparam")),
+    thresholds = listOf(GraphThreshold(100)),
+    timeRegions = listOf(GraphTimeRegion(colorMode = GraphTimeRegion.ColorMode.CUSTOM, fillColor = rgb(255, 152, 48), from = "12:00", fromDayOfWeek = THURSDAY, lineColor = rgba(199, 132, 124, 0.6), to = "13:00", toDayOfWeek = FRIDAY)),
 )
 
 val complexGraphPanel1 = SerdeExample.of("Complex graph panel 1", dtoGraphPanel1, rawGraphPanel1)

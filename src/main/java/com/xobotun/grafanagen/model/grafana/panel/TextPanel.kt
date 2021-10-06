@@ -1,6 +1,7 @@
 package com.xobotun.grafanagen.model.grafana.panel
 
 import com.xobotun.grafanagen.model.grafana.AbstractDataTarget
+import com.xobotun.grafanagen.model.grafana.DashboardLink
 import com.xobotun.grafanagen.model.grafana.PluginVersion
 
 /**
@@ -35,7 +36,7 @@ data class TextPanel(
     override val maxDataPoints: Int? = null,
     override val interval: String? = null,
     override val description: String? = null,
-    override val links: List<Any>? = emptyList(),
+    override val links: List<DashboardLink>? = emptyList(),
     override val transparent: Boolean? = null, // null and false are the same
 
     /** Text display mode. */

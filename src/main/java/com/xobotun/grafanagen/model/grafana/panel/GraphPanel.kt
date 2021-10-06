@@ -1,6 +1,7 @@
 package com.xobotun.grafanagen.model.grafana.panel
 
 import com.xobotun.grafanagen.model.grafana.AbstractDataTarget
+import com.xobotun.grafanagen.model.grafana.DashboardLink
 import com.xobotun.grafanagen.model.grafana.GrafanaGenericDataTarget
 
 /**
@@ -24,7 +25,7 @@ data class GraphPanel(
     override val soloMode: Boolean? = null,
     override val targets: List<AbstractDataTarget>? = listOf(GrafanaGenericDataTarget()),
     override val datasource: String? = null,
-    override val thresholds: List<Any>? = emptyList(),
+    override val thresholds: List<GraphThreshold>? = emptyList(),
     override val pluginVersion: String? = null,
     override val snapshotData: Any? = null,
     override val timeFrom: String? = null,
@@ -34,7 +35,7 @@ data class GraphPanel(
     override val maxDataPoints: Int? = null,
     override val interval: String? = null,
     override val description: String? = null,
-    override val links: List<Any>? = null,
+    override val links: List<DashboardLink>? = null,
     override val transparent: Boolean? = null,
 
     /** TODO: comments */
@@ -57,7 +58,7 @@ data class GraphPanel(
     val spaceLength: Int = 10,
     val stack: Boolean = false,
     val steppedLine: Boolean = false,
-    val timeRegions: List<Any> = emptyList(),
+    val timeRegions: List<GraphTimeRegion> = emptyList(),
     val tooltip:GraphTooltip = GraphTooltip(),
     val xaxis: GraphXAxisConfig = GraphXAxisConfig(),
     val yaxes: List<GraphYAxisConfig> = listOf(GraphYAxisConfig(), GraphYAxisConfig()),
@@ -149,3 +150,94 @@ data class GraphYAxesPairingConfig(
     val align: Boolean = false,
     val alignLevel: Number? = null
 )
+
+/** Horizontal ruler on a graph widget */
+data class GraphThreshold(
+    /** Line height */
+    val value: Int = 100,
+    val colorMode: String = ColorMode.WARNING,
+    /** `>` or `<` */
+    val op: String = Operation.GT,
+    /** Fill the space above/below the line */
+    val fill: Boolean = true,
+    /** Whether to draw the line */
+    val line: Boolean = true,
+    val yaxis: String = YAxis.LEFT,
+    /** Used when [colorMode] == [ColorMode.CUSTOM] */
+    val fillColor: String? = null,
+    /** Used when [colorMode] == [ColorMode.CUSTOM] */
+    val lineColor: String? = null
+) {
+    class ColorMode {
+        companion object {
+            const val OK = "ok"
+            const val WARNING = "warning"
+            const val CRITICAL = "critical"
+            const val CUSTOM = "custom"
+        }
+    }
+    /** Affects only tooltip, not how the series are shown. */
+    class Operation {
+        companion object {
+            /** Warning when series greater than threshold */
+            const val GT = "gt"
+            /** Warning when series below the threshold */
+            const val LT = "lt"
+        }
+    }
+    /** Affects only tooltip, not how the series are shown. */
+    class YAxis {
+        companion object {
+            /** Left y axis */
+            const val LEFT = "left"
+            /** Right y axis */
+            const val RIGHT = "right"
+        }
+    }
+}
+
+/** Horizontal ruler on a graph widget */
+data class GraphTimeRegion(
+    /** Some magic constant */
+    val op: String = "time",
+    val colorMode: String = ColorMode.GRAY,
+    /** Fill the space between the dates */
+    val fill: Boolean = true,
+    /** Whether to draw the lines around the fill */
+    val line: Boolean = true,
+    /** From time: hh:MM */
+    val from: String? = null,
+    /** To time: hh:MM */
+    val to: String? = null,
+    /** From time: hh:MM */
+    val fromDayOfWeek: Int? = DayOfWeek.ANY,
+    /** To time: hh:MM */
+    val toDayOfWeek: Int? = DayOfWeek.ANY,
+    /** Used when [colorMode] == [ColorMode.CUSTOM] */
+    val fillColor: String? = null,
+    /** Used when [colorMode] == [ColorMode.CUSTOM] */
+    val lineColor: String? = null
+) {
+    class ColorMode {
+        companion object {
+            const val GRAY = "gray"
+            const val RED = "red"
+            const val GREEN = "green"
+            const val BLUE = "blue"
+            const val YELLOW = "yellow"
+            const val CUSTOM = "custom"
+        }
+    }
+    class DayOfWeek {
+        companion object {
+            val ANY: Int? = null
+            const val MONDAY = 1
+            const val TUESDAY = 2
+            const val WEDNESDAY = 3 // Dude!
+            const val THURSDAY = 4
+            const val FRIDAY = 5
+            const val SATURDAY = 6
+            const val SUNDAY = 7
+        }
+    }
+}
