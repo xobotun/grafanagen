@@ -93,7 +93,8 @@ private val rawSinglestatPanel1 = """
   "repeat": "test",
   "repeatDirection": "h",
   "maxPerRow": 3
-}""".trimIndent()
+}
+""".trimIndent()
 
 private val dtoSinglestatPanel1 = SinglestatPanel(
     gridPos = PanelDimensions(x = 0, y = 0, w = 12, h = 8),
@@ -119,7 +120,7 @@ private val dtoSinglestatPanel1 = SinglestatPanel(
     valueMaps = listOf(SinglestatValueMap(), SinglestatValueMap(value = "2", text = "3")),
     rangeMaps = listOf(SinglestatRangeMap(from = "1", to = "2")),
     sparkline = SinglestatSparkline(show = true, full = true, lineColor = "rgb(31, 120, 193)", fillColor = "rgba(31, 118, 189, 0.18)"),
-    gauge = SinglestatGauge()
+    gauge = SinglestatGauge(show = true, thresholdLabels = true)
 )
 
 val complexSinglestatPanel1 = SerdeExample.of("Complex singlestat panel 1", dtoSinglestatPanel1, rawSinglestatPanel1)

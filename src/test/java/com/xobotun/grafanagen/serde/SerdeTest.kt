@@ -21,6 +21,7 @@ class SerdeTest {
         defaultGraphPanel1,
         defaultGraphPanel2,
         complexGraphPanel1,
+        defaultSinglestatPanel1,
         complexSinglestatPanel1,
     ).map {
         DynamicTest.dynamicTest("${it.name} should serialize correctly") {

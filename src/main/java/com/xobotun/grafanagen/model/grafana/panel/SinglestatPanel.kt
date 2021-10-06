@@ -35,10 +35,10 @@ data class SinglestatPanel(
     override val timeShift: String? = null,
     override val hideTimeOverride: Boolean? = null,
     override val options: Any? = Object(),
-    override val maxDataPoints: Int? = null,
+    override val maxDataPoints: Int? = 100,
     override val interval: String? = null,
     override val description: String? = null,
-    override val links: List<DashboardLink>? = null,
+    override val links: List<DashboardLink>? = listOf(),
     override val transparent: Boolean? = null,
 
     val format: String = "none",
@@ -48,9 +48,9 @@ data class SinglestatPanel(
     val colorPostfix: Boolean? = null,
     val decimals: Int? = null,
     val nullText: String? = null,
-    val valueMaps: List<SinglestatValueMap> = emptyList(),
+    val valueMaps: List<SinglestatValueMap> = listOf(SinglestatValueMap()),
     val mappingTypes: List<MappingType> = listOf(MappingType("value to text", VALUE_TO_TEXT), MappingType("range to text", RANGE_TO_TEXT)),
-    val rangeMaps: List<SinglestatRangeMap> = emptyList(),
+    val rangeMaps: List<SinglestatRangeMap> = listOf(SinglestatRangeMap()),
     val mappingType: Int = VALUE_TO_TEXT,
     val nullPointMode: String = NullPointMode.CONNECTED,
     val valueName: String? = SinglestatMode.AVG,
@@ -59,7 +59,7 @@ data class SinglestatPanel(
     val postfixFontSize: String = "50%",
     val colorBackground: Boolean = false,
     val colorValue: Boolean = false,
-    val colors: List<String> = listOf("#299c46", "gba(237, 129, 40, 0.89)", "#d44a3a"),
+    val colors: List<String> = listOf("#299c46", "rgba(237, 129, 40, 0.89)", "#d44a3a"),
     val sparkline: SinglestatSparkline = SinglestatSparkline(),
     val gauge: SinglestatGauge = SinglestatGauge(),
     val tableColumn: String = "",
@@ -114,8 +114,8 @@ data class SinglestatValueMap(
 
 /** Maps range to text */
 data class SinglestatRangeMap(
-    val from: String = "",
-    val to: String = "",
+    val from: String = "null",
+    val to: String = "null",
     val text: String = "N/A",
 )
 
@@ -129,9 +129,9 @@ data class SinglestatSparkline(
 
 /** Gauge on the foreground */
 data class SinglestatGauge(
-    val show: Boolean = true,
+    val show: Boolean = false,
     val minValue: Int = 0,
     val maxValue: Int = 100,
     val thresholdMarkers: Boolean = true,
-    val thresholdLabels: Boolean = true,
+    val thresholdLabels: Boolean = false,
 )
