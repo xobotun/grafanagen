@@ -54,7 +54,7 @@ data class GraphPanel(
     val pointradius: Int = 2,
     val points: Boolean = false,
     val renderer: String = "flot",
-    val seriesOverrides: List<Any> = emptyList(),
+    val seriesOverrides: List<GraphSeriesOverride> = emptyList(),
     val spaceLength: Int = 10,
     val stack: Boolean = false,
     val steppedLine: Boolean = false,

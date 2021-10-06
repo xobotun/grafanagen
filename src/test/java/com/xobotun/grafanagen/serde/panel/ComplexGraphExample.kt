@@ -64,9 +64,28 @@ private val rawGraphPanel1 = """
   "seriesOverrides": [
     {
       "alias": "A-series",
-      "legend": true,
+      "bars": true,
+      "lines": false,
+      "fill": 0,
       "linewidth": 0,
-      "stack": "B"
+      "nullPointMode": "connected",
+      "fillBelowTo": "B-series",
+      "steppedLine": true,
+      "dashes": true,
+      "dashLength": 1,
+      "spaceLength": 1,
+      "points": true,
+      "pointradius": 1,
+      "stack": "A",
+      "yaxis": 1,
+      "zindex": -3,
+      "transform": "negative-Y",
+      "legend": true,
+      "hideTooltip": true,
+      "color": "#B877D9"
+    },
+    {
+      "alias": "B-series"
     }
   ],
   "spaceLength": 10,
@@ -188,6 +207,10 @@ private val dtoGraphPanel1 = GraphPanel(
     links = listOf(DashboardLink(keepTime = true, includeVars = true, targetBlank = true, dashboard = "test", title = "title", params = "testparam")),
     thresholds = listOf(GraphThreshold(100)),
     timeRegions = listOf(GraphTimeRegion(colorMode = GraphTimeRegion.ColorMode.CUSTOM, fillColor = rgb(255, 152, 48), from = "12:00", fromDayOfWeek = THURSDAY, lineColor = rgba(199, 132, 124, 0.6), to = "13:00", toDayOfWeek = FRIDAY)),
+    seriesOverrides = listOf(
+        GraphSeriesOverride(alias = "A-series", bars = true, lines = false, fill = 0, linewidth = 0, nullPointMode = "connected", fillBelowTo = "B-series", steppedLine = true, dashes = true, dashLength = 1, spaceLength = 1, points = true, pointradius = 1, stack = "A", yaxis = 1, zindex = -3, transform = "negative-Y", legend = true, hideTooltip = true, color = "#B877D9"),
+        GraphSeriesOverride(alias = "B-series")
+    )
 )
 
 val complexGraphPanel1 = SerdeExample.of("Complex graph panel 1", dtoGraphPanel1, rawGraphPanel1)
