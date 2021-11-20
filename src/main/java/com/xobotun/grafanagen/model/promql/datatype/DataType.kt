@@ -8,3 +8,7 @@ import kotlin.reflect.KClass
 sealed interface DataType
 
 typealias DataTypeProvider = () -> KClass<out DataType>
+typealias FloatScalarProvider = () -> KClass<FloatScalar>
+typealias StringScalarProvider = () -> KClass<StringScalar>
+typealias InstantVectorProvider = () -> KClass<InstantVector>
+typealias RangeVectorProvider = () -> KClass<RangeVector>
