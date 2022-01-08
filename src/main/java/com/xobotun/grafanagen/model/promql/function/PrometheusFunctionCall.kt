@@ -8,7 +8,7 @@ import com.xobotun.grafanagen.model.promql.datatype.DataTypeProvider
  */
 data class PrometheusFunctionCall(
     val metadata: PrometheusFunction,
-    val arguments: List<DataTypeProvider>, // TODO: compile-time verification?
+    val arguments: List<DataTypeProvider>, // TODO: compile-time verification? // TODO: create a verification visitor hierearchy.
 ) : DataTypeProvider {
     override fun invoke() = metadata.returnType
 }

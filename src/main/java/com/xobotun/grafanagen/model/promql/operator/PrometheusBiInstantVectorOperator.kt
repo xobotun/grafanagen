@@ -25,7 +25,7 @@ data class PrometheusBiInstantVectorOperator internal constructor(
         val MODULO =           PrometheusBiInstantVectorOperator("%")
         val EXPONENTIATION =   PrometheusBiInstantVectorOperator("^")
 
-        val ATAN_2 =           PrometheusBiInstantVectorOperator("atan2")
+        val ATAN_2 =           PrometheusBiInstantVectorOperator("atan2") // May be not available in some early Prometheus versions.
 
         val EQUAL =            PrometheusBiInstantVectorOperator("==")
         val NOT_EQUAL =        PrometheusBiInstantVectorOperator("!=")

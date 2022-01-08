@@ -1,6 +1,7 @@
 package com.xobotun.grafanagen.model.promql.operator
 
 import com.xobotun.grafanagen.model.promql.datatype.*
+import kotlin.reflect.KClass
 
 
 data class PrometheusBiScalarOperatorCall(
@@ -20,7 +21,7 @@ data class PrometheusScalarInstantVectorOperatorCall(
     val leftSide: InstantVectorProvider,
     val rightSide: FloatScalarProvider,
 ): DataTypeProvider {
-    override fun invoke() = if (operator.isBoolean && yieldBoolean) FloatScalar::class else InstantVector::class
+    override fun invoke(): KClass<out DataType> = if (operator.isBoolean && yieldBoolean) FloatScalar::class else InstantVector::class
 }
 
 data class PrometheusBiInstantVectorOperatorCall(
