@@ -12,8 +12,8 @@ data class InstantVector(
     val offsetModifier: TimeDuration? = null,
     /** Unix timestamp or `start()` or `end()`. */
     val atModifier: StringScalarProvider? = null,
-) : DataType, RangeVectorProvider, Literal {
-    override fun invoke() = RangeVector::class
+) : DataType, InstantVectorProvider, Literal {
+    override fun invoke() = InstantVector::class
 
     data class LabelMatcher(
         val labelName: StringScalarProvider,

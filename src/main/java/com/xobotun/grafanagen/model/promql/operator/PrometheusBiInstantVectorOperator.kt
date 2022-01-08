@@ -52,8 +52,8 @@ data class PrometheusBiInstantVectorOperator internal constructor(
         val keyword: String
     ) {
         companion object {
-            val GROUP_LEFT = LabelMatcherMode("group_left")
-            val GROUP_RIGHT = LabelMatcherMode("group_right")
+            val GROUP_LEFT = LabelGrouperMode("group_left")
+            val GROUP_RIGHT = LabelGrouperMode("group_right")
         }
     }
 }

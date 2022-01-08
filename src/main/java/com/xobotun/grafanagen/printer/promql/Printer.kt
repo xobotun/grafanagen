@@ -23,6 +23,7 @@ interface Printer<T> where T: DataTypeProvider {
     companion object {
         /**
          * Finds a suitable printer and attempts to turn [entrypoint] into string with [printers] provided.
+         * All calls are better to be made through this method, unless the certain printer is known for sure.
          */
         fun print(entrypoint: DataTypeProvider, printers: List<out Printer<in DataTypeProvider>>): String {
             return findSuitablePrinter(entrypoint, printers).print(entrypoint, printers)

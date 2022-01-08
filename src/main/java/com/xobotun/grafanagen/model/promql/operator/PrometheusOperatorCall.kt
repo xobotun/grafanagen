@@ -60,7 +60,7 @@ data class PrometheusAggregateOperatorCall(
 }
 
 data class PrometheusParametrizedAggregateOperatorCall(
-    val operator: PrometheusAggregateOperator,
+    val operator: PrometheusParametrizedAggregateOperator,
     val vector: InstantVectorProvider,
     val parameter: DataTypeProvider,
     val labelAggregator: PrometheusAggregateOperatorCall.LabelAggregator? = null,
