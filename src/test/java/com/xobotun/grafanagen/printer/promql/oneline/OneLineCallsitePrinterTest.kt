@@ -11,6 +11,7 @@ import com.xobotun.grafanagen.printer.promql.Printer
 import com.xobotun.grafanagen.printer.promql.literal.SimpleLiteralPrinter
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 internal class OneLineCallsitePrinterTest {
     private val printers = listOf(SimpleLiteralPrinter, OneLineCallsitePrinter)
@@ -223,6 +224,16 @@ internal class OneLineCallsitePrinterTest {
         val result = Printer.print(callsite, printers)
 
         assertEquals("bottomk by(\"incontinentia\") (10.0, simpleVector * 10.0)", result)
+    }
+
+    @Test
+    fun throwsExceptionOnBadConfiguration() {
+        val callsite = PrometheusAggregateOperatorCall(
+            PrometheusAggregateOperator.COUNT,
+            simpleInstantVector,
+        )
+
+        assertThrows(IllegalArgumentException::class.java) { Printer.print(callsite, listOf(OneLineCallsitePrinter)) }
     }
 
 }
