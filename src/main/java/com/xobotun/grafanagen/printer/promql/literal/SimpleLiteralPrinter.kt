@@ -96,11 +96,11 @@ internal fun printAnyVector(
         val label = Printer.print(it.labelName, printers)
         val expression = Printer.print(it.value, printers)
 
-        return@map "$label ${it.operator.operator} $expression"
+        return@map "$label${it.operator.operator}$expression"
     }
     val joinedLabels = labels?.joinToString()?.let { "{$it}" }
-    val offset = offsetModifier?.let { TimeDurationPrinter.print(it) }
-    val at = atModifier?.let { Printer.print(it, printers) }
+    val offset = offsetModifier?.let { "offset " + TimeDurationPrinter.print(it) }
+    val at = atModifier?.let { "@ " + Printer.print(it, printers) }
     val scrapeRange = timeDuration?.let { TimeDurationPrinter.print(it) } ?.let { "[$it]" }
 
     val solidPart = listOfNotNull(metric, joinedLabels, scrapeRange).joinToString("")
