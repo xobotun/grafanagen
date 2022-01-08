@@ -14,7 +14,6 @@ class StringLiteral(
     val escapeSymbol: Char? = null
 ): StringScalarProvider, Literal {
     override fun invoke() = StringScalar::class
-    override fun print() = if (escapeSymbol == null) value else "$escapeSymbol$value$escapeSymbol"
 
     /**
      * See also Go escape modes: https://go.dev/ref/spec#String_literals

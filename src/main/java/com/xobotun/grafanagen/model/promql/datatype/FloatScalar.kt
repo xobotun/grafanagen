@@ -8,7 +8,6 @@ import kotlin.reflect.KClass
 data class FloatScalar(
     val value: Double
 ) : DataType, FloatScalarProvider, Literal {
-    override fun print() = value.toString()
     override fun invoke() = FloatScalar::class
 }
 

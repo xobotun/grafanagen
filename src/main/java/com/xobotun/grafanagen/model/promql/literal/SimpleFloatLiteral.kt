@@ -16,5 +16,4 @@ class SimpleFloatLiteral(
     val precision: Int
 ): FloatScalarProvider, Literal {
     override fun invoke() = FloatScalar::class
-    override fun print() = "%.${precision}f".format(value)
 }

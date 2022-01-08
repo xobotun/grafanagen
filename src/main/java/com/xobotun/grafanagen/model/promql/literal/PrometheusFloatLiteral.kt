@@ -19,7 +19,6 @@ class PrometheusFloatLiteral(
     }
 
     override fun invoke() = FloatScalar::class
-    override fun print() = prometheusFloat
 
     companion object {
         val regex = "[-+]?([0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?|0[xX][0-9a-fA-F]+|[nN][aA][nN]|[iI][nN][fF])".toRegex()

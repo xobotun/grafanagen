@@ -7,7 +7,6 @@ package com.xobotun.grafanagen.model.promql.datatype
 data class StringScalar(
     val value: String
 ) : DataType, StringScalarProvider, Literal {
-    override fun print() = value
     override fun invoke() = StringScalar::class
 }
 

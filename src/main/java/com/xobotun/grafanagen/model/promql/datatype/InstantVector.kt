@@ -7,22 +7,18 @@ package com.xobotun.grafanagen.model.promql.datatype
  * https://prometheus.io/docs/prometheus/latest/querying/basics/#modifier
  */
 data class InstantVector(
-    val metricName: String,
+    val metricName: StringScalarProvider,
     val labelMatchers: List<LabelMatcher>? = null,
     val offsetModifier: TimeDuration? = null,
     /** Unix timestamp or `start()` or `end()`. */
-    val atModifier: String? = null,
+    val atModifier: StringScalarProvider? = null,
 ) : DataType, RangeVectorProvider, Literal {
-    override fun print(): String {
-        val labels = labelMatchers?.joinToString { "${it.labelName} ${it.operator} ${it.value}" }?.let { "{$it}" } ?: ""
-        return listOfNotNull("$metricName$labels", offsetModifier?.value, atModifier).joinToString(" ")
-    }
     override fun invoke() = RangeVector::class
 
     data class LabelMatcher(
-        val labelName: String,
+        val labelName: StringScalarProvider,
         val operator: LabelComparisonOperator,
-        val value: String,
+        val value: StringScalarProvider,
     )
 
     data class LabelComparisonOperator internal constructor(
