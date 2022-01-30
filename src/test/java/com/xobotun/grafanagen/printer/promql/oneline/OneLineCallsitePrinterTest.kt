@@ -66,7 +66,7 @@ internal class OneLineCallsitePrinterTest {
 
         val result = Printer.print(callsite, printers)
 
-        assertEquals("((simpleVector) % 9000.0)", result)
+        assertEquals("(simpleVector % 9000.0)", result)
     }
 
     @Test
@@ -81,7 +81,7 @@ internal class OneLineCallsitePrinterTest {
 
         val result = Printer.print(callsite, printers)
 
-        assertEquals("(9000.0 == bool (simpleVector))", result)
+        assertEquals("(9000.0 == bool simpleVector)", result)
     }
 
     @Test
@@ -95,7 +95,7 @@ internal class OneLineCallsitePrinterTest {
 
         val result = Printer.print(callsite, printers)
 
-        assertEquals("((simpleVector) atan2 (another))", result)
+        assertEquals("(simpleVector atan2 another)", result)
     }
 
     @Test
@@ -113,7 +113,7 @@ internal class OneLineCallsitePrinterTest {
 
         val result = Printer.print(callsite, printers)
 
-        assertEquals("((simpleVector) > on(\"any\") (another))", result)
+        assertEquals("(simpleVector > on(\"any\") another)", result)
     }
 
     @Test
@@ -131,7 +131,7 @@ internal class OneLineCallsitePrinterTest {
 
         val result = Printer.print(callsite, printers)
 
-        assertEquals("((simpleVector) > group_left(\"any\") (another))", result)
+        assertEquals("(simpleVector > group_left(\"any\") another)", result)
     }
 
     @Test
@@ -153,7 +153,7 @@ internal class OneLineCallsitePrinterTest {
 
         val result = Printer.print(callsite, printers)
 
-        assertEquals("((simpleVector) unless bool ignoring(\"any\", \"secondary\") group_right(\"random\") (another))", result)
+        assertEquals("(simpleVector unless bool ignoring(\"any\", \"secondary\") group_right(\"random\") another)", result)
     }
 
     @Test
@@ -165,7 +165,7 @@ internal class OneLineCallsitePrinterTest {
 
         val result = Printer.print(callsite, printers)
 
-        assertEquals("(count((simpleVector)))", result)
+        assertEquals("(count(simpleVector))", result)
     }
 
     @Test
@@ -181,7 +181,7 @@ internal class OneLineCallsitePrinterTest {
 
         val result = Printer.print(callsite, printers)
 
-        assertEquals("(count without(\"random\") ((simpleVector)))", result)
+        assertEquals("(count without(\"random\") (simpleVector))", result)
     }
 
     @Test
@@ -198,7 +198,7 @@ internal class OneLineCallsitePrinterTest {
 
         val result = Printer.print(callsite, printers)
 
-        assertEquals("(bottomk by(\"incontinentia\") (10.0, (simpleVector)))", result)
+        assertEquals("(bottomk by(\"incontinentia\") (10.0, simpleVector))", result)
     }
 
     @Test
@@ -223,7 +223,7 @@ internal class OneLineCallsitePrinterTest {
 
         val result = Printer.print(callsite, printers)
 
-        assertEquals("(bottomk by(\"incontinentia\") (10.0, ((simpleVector) * 10.0)))", result)
+        assertEquals("(bottomk by(\"incontinentia\") (10.0, (simpleVector * 10.0)))", result)
     }
 
     @Test

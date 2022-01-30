@@ -39,15 +39,15 @@ object SimpleLiteralPrinter : Printer<DataTypeProvider> {
             is StringScalar -> entrypoint.value
             is StringLiteral -> entrypoint.let { s -> s.escapeSymbol?.let { "$it${s.value}$it" } ?: s.value }
             // Cases more difficult logic
-            is TimeDuration -> TimeDurationPrinter.print(entrypoint, printers).wrapInBrackets()
-            is InstantVector -> InstantVectorPrinter.print(entrypoint, printers).wrapInBrackets()
-            is RangeVector -> RangeVectorPrinter.print(entrypoint, printers).wrapInBrackets()
+            is TimeDuration -> TimeDurationPrinter.print(entrypoint, printers)
+            is InstantVector -> InstantVectorPrinter.print(entrypoint, printers)
+            is RangeVector -> RangeVectorPrinter.print(entrypoint, printers)
             else -> Printer.print(entrypoint, printers)
         }
     }
 }
 
-internal object TimeDurationPrinter : Printer<TimeDuration> {
+object TimeDurationPrinter : Printer<TimeDuration> {
     override fun print(entrypoint: TimeDuration, printers: List<Printer<in DataTypeProvider>>) = print(entrypoint)
 
     fun print(entrypoint: TimeDuration): String {
@@ -105,5 +105,8 @@ internal fun printAnyVector(
     val scrapeRange = timeDuration?.let { TimeDurationPrinter.print(it) } ?.let { "[$it]" }
 
     val solidPart = listOfNotNull(metric, joinedLabels, scrapeRange).joinToString("")
-    return listOfNotNull(solidPart, offset, at).joinToString(" ")
+    val rangedOrInstant = listOfNotNull(solidPart, offset, at).joinToString(" ")
+
+    val needToWrap = offset != null || at != null // curly and square brackets are unnecessary to wrap. Having some spaces makes adding round brackets desirable, imho.
+    return if (needToWrap) rangedOrInstant.wrapInBrackets() else rangedOrInstant
 }
