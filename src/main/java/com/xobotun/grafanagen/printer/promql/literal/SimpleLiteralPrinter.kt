@@ -7,6 +7,7 @@ import com.xobotun.grafanagen.model.promql.literal.SimpleFloatLiteral
 import com.xobotun.grafanagen.model.promql.literal.StringLiteral
 import com.xobotun.grafanagen.model.promql.operator.*
 import com.xobotun.grafanagen.printer.promql.Printer
+import com.xobotun.grafanagen.printer.promql.wrapInBrackets
 import java.lang.IllegalArgumentException
 
 /**
@@ -38,9 +39,9 @@ object SimpleLiteralPrinter : Printer<DataTypeProvider> {
             is StringScalar -> entrypoint.value
             is StringLiteral -> entrypoint.let { s -> s.escapeSymbol?.let { "$it${s.value}$it" } ?: s.value }
             // Cases more difficult logic
-            is TimeDuration -> TimeDurationPrinter.print(entrypoint, printers)
-            is InstantVector -> InstantVectorPrinter.print(entrypoint, printers)
-            is RangeVector -> RangeVectorPrinter.print(entrypoint, printers)
+            is TimeDuration -> TimeDurationPrinter.print(entrypoint, printers).wrapInBrackets()
+            is InstantVector -> InstantVectorPrinter.print(entrypoint, printers).wrapInBrackets()
+            is RangeVector -> RangeVectorPrinter.print(entrypoint, printers).wrapInBrackets()
             else -> Printer.print(entrypoint, printers)
         }
     }

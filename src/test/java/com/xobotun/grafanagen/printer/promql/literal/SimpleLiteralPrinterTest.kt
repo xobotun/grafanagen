@@ -43,7 +43,7 @@ internal class SimpleLiteralPrinterOtherTest {
     @Test
     fun canPrintTimeDuration() {
         val result = SimpleLiteralPrinter.print(TimeDuration(years = 10), listOf(SimpleLiteralPrinter))
-        assertEquals("10y", result)
+        assertEquals("(10y)", result)
     }
 }
 
@@ -56,7 +56,7 @@ internal class SimpleLiteralPrinterVectorTest {
     @Test
     fun canPrintSimpleInstant() {
         val result = SimpleLiteralPrinter.print(InstantVector(metricName), listOf(SimpleLiteralPrinter))
-        assertEquals(metricName.value, result)
+        assertEquals("(${metricName.value})", result)
     }
 
     @Test
@@ -67,7 +67,7 @@ internal class SimpleLiteralPrinterVectorTest {
         )
 
         val result = SimpleLiteralPrinter.print(vector, listOf(SimpleLiteralPrinter))
-        assertEquals("metricName{labelName1=\"labelName2\"}", result)
+        assertEquals("(metricName{labelName1=\"labelName2\"})", result)
     }
 
     @Test
@@ -78,7 +78,7 @@ internal class SimpleLiteralPrinterVectorTest {
         )
 
         val result = SimpleLiteralPrinter.print(vector, listOf(SimpleLiteralPrinter))
-        assertEquals("metricName offset 9999ms", result)
+        assertEquals("(metricName offset 9999ms)", result)
     }
 
     @Test
@@ -89,7 +89,7 @@ internal class SimpleLiteralPrinterVectorTest {
         )
 
         val result = SimpleLiteralPrinter.print(vector, listOf(SimpleLiteralPrinter))
-        assertEquals("metricName @ unix-time", result)
+        assertEquals("(metricName @ unix-time)", result)
     }
 
     @Test
@@ -105,7 +105,7 @@ internal class SimpleLiteralPrinterVectorTest {
         )
 
         val result = SimpleLiteralPrinter.print(vector, listOf(SimpleLiteralPrinter))
-        assertEquals("metricName{labelName1=\"labelName2\", labelName2!~\"labelName1\"} offset -10m @ start()", result)
+        assertEquals("(metricName{labelName1=\"labelName2\", labelName2!~\"labelName1\"} offset -10m @ start())", result)
     }
 
     @Test
@@ -124,6 +124,6 @@ internal class SimpleLiteralPrinterVectorTest {
         )
 
         val result = SimpleLiteralPrinter.print(vector, listOf(SimpleLiteralPrinter))
-        assertEquals("metricName{labelName1!=\"labelName2\", labelName2=~\"labelName1\"}[5m] offset -10m @ start()", result)
+        assertEquals("(metricName{labelName1!=\"labelName2\", labelName2=~\"labelName1\"}[5m] offset -10m @ start())", result)
     }
 }

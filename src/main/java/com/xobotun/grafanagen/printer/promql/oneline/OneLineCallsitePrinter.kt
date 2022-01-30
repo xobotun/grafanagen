@@ -5,6 +5,7 @@ import com.xobotun.grafanagen.model.promql.datatype.InstantVectorProvider
 import com.xobotun.grafanagen.model.promql.function.PrometheusFunctionCall
 import com.xobotun.grafanagen.model.promql.operator.*
 import com.xobotun.grafanagen.printer.promql.Printer
+import com.xobotun.grafanagen.printer.promql.wrapInBrackets
 
 /**
  * An entrypoint to any PromQL printing code
@@ -26,12 +27,12 @@ object OneLineCallsitePrinter : Printer<DataTypeProvider> {
     override fun print(entrypoint: DataTypeProvider, printers: List<out Printer<DataTypeProvider>>): String {
         return when(entrypoint) {
             // Recursive printers
-            is PrometheusFunctionCall -> FunctionPrinter.print(entrypoint, printers)
-            is PrometheusBiScalarOperatorCall -> BiScalarOperatorCall.print(entrypoint, printers)
-            is PrometheusScalarInstantVectorOperatorCall -> ScalarInstantVectorOperatorCall.print(entrypoint, printers)
-            is PrometheusBiInstantVectorOperatorCall -> BiInstantVectorOperatorCall.print(entrypoint, printers)
-            is PrometheusAggregateOperatorCall -> AggregateOperatorCall.print(entrypoint, printers)
-            is PrometheusParametrizedAggregateOperatorCall -> ParametrizedAggregateOperatorCall.print(entrypoint, printers)
+            is PrometheusFunctionCall -> FunctionPrinter.print(entrypoint, printers).wrapInBrackets()
+            is PrometheusBiScalarOperatorCall -> BiScalarOperatorCall.print(entrypoint, printers).wrapInBrackets()
+            is PrometheusScalarInstantVectorOperatorCall -> ScalarInstantVectorOperatorCall.print(entrypoint, printers).wrapInBrackets()
+            is PrometheusBiInstantVectorOperatorCall -> BiInstantVectorOperatorCall.print(entrypoint, printers).wrapInBrackets()
+            is PrometheusAggregateOperatorCall -> AggregateOperatorCall.print(entrypoint, printers).wrapInBrackets()
+            is PrometheusParametrizedAggregateOperatorCall -> ParametrizedAggregateOperatorCall.print(entrypoint, printers).wrapInBrackets()
             // Uncertain recursion terminator
             else -> Printer.print(entrypoint, printers)
         }
