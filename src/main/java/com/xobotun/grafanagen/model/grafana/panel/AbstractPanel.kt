@@ -13,8 +13,8 @@ import com.xobotun.grafanagen.model.grafana.PluginVersion
 interface AbstractPanel {
     /** Widget's id on the dashboard? TODO */
     val id: Int
-    /** Widget's bounding box. */
-    val gridPos: PanelDimensions
+    /** Widget's bounding box. Mutable for easy layout manipulation. */
+    var gridPos: PanelDimensions
     /** Widget's type that determines its' fields and display mode. TODO: get a list of non-plugins types somewhere. */
     val type: String
     /** Widget's title. */

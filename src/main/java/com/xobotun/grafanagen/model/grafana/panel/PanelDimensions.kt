@@ -13,5 +13,13 @@ data class PanelDimensions(
     val w: Int,
     /** Height of the widget. One unit is 30 px. */
     val h: Int,
-)
+) {
+    companion object {
+        const val PIXELS_PER_H_UNIT = 30
+        const val MIN_WIDTH = 1
+        const val MAX_WIDTH = 24
+        const val MIN_HEIGHT = 1
+        const val DEFAULT_HEIGHT = 9 // Just a default height of a newly created widget
+    }
+}
 
