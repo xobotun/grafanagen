@@ -3,7 +3,8 @@ package com.xobotun.grafanagen.config
 /**
  * An entry point to access the global config.
  */
-fun getGlobalConfig(): GlobalConfig = GLOBAL_CONFIG_PROVIDER()
+val GLOBAL_CONFIG: GlobalConfig
+    get() = GLOBAL_CONFIG_PROVIDER()
 
 /**
  * Global config provider that is supposed to ease testing a bit.
