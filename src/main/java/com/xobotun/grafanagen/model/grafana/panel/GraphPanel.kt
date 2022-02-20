@@ -9,7 +9,7 @@ import com.xobotun.grafanagen.model.grafana.GrafanaGenericDataTarget
  */
 data class GraphPanel(
     override val id: Int,
-    override val gridPos: PanelDimensions,
+    override var gridPos: PanelDimensions,
     override val type: String = BuiltInType.GRAPH_PANEL,
     override val title: String,
     override val alert: Any? = null,

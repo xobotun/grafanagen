@@ -10,7 +10,7 @@ import kotlin.math.roundToInt
  * Horizontal layout that attempts to preserve proportions of the children layouts.
  */
 class HorizontalLayout(
-    parent: Layout,
+    parent: Layout?,
     override val children: List<Layout>,
     minWidth: Int = MIN_WIDTH,
     minHeight: Int = MIN_HEIGHT,

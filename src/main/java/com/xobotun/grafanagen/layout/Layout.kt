@@ -28,8 +28,9 @@ interface Layout {
     /**
      * Sometimes it is interesting to know who your parent is, right?
      * Actual logic should not rely on this field, though.
+     * Nullable because the topmost layout's parent is the dashboard itself.
      */
-    val parent: Layout
+    val parent: Layout?
 
     /**
      * Calling this method will propagate to the lowest level of the layout hierarchy

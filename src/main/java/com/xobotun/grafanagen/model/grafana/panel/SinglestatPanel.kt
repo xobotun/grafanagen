@@ -12,7 +12,7 @@ import com.xobotun.grafanagen.model.grafana.panel.SinglestatPanel.MappingType.Co
  */
 data class SinglestatPanel(
     override val id: Int,
-    override val gridPos: PanelDimensions,
+    override var gridPos: PanelDimensions,
     override val type: String = BuiltInType.SINGLESTAY_PANEL,
     override val title: String,
     override val alert: Any? = null,

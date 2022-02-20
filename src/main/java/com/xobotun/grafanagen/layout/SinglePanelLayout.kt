@@ -11,7 +11,7 @@ import com.xobotun.grafanagen.model.grafana.panel.PanelDimensions.Companion.MIN_
  * Actually configures dimensions of the panel.
  */
 class SinglePanelLayout(
-    parent: Layout,
+    parent: Layout?,
     var panel: AbstractPanel,
     minWidth: Int = MIN_WIDTH,
     minHeight: Int = MIN_HEIGHT,

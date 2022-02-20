@@ -9,7 +9,7 @@ import com.xobotun.grafanagen.model.grafana.panel.PanelDimensions.Companion.MIN_
  * Just an abstract class to define defaults, constraints and a constructor.
  */
 abstract class AbstractLayout(
-    final override val parent: Layout,
+    final override val parent: Layout?,
     final override val minWidth: Int = MIN_WIDTH,
     final override val minHeight: Int = MIN_HEIGHT,
     final override val desiredWidth: Int = MAX_WIDTH,
