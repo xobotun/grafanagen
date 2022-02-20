@@ -8,8 +8,6 @@ package com.xobotun.grafanagen.config
  * What can go wrong with global variables, anyway?
  * But that's the easiest solution to code down and understand, I think.
  */
-var GLOBAL_CONFIG: GlobalConfig = GlobalConfig()
-
 data class GlobalConfig(
     val layoutConfig: LayoutConfig = LayoutConfig.DEFAULT,
 )

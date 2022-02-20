@@ -6,9 +6,9 @@ import kotlin.annotation.AnnotationTarget.*
 
 /**
  * A JUnit 5 extension annotation to put on methods and classes
- * to make the actual extension do all the hardlifting work of restoring the previous config after each run.
+ * to make the actual extension do all the hardlifting work of hiding the config for each test.
  */
-@Target(TYPE, FUNCTION)
+@Target(CLASS, FUNCTION)
 @Retention(RUNTIME)
-@ExtendWith(GlobalConfigRestoringExtension::class)
-annotation class ModifiesGlobalConfig
+@ExtendWith(GlobalConfigIncapsulatingExtension::class)
+annotation class IsolatedGlobalConfig
