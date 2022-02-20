@@ -1,7 +1,12 @@
 package com.xobotun.grafanagen.layout
 
+import com.xobotun.grafanagen.config.GLOBAL_CONFIG
+import com.xobotun.grafanagen.config.GlobalConfig
+import com.xobotun.grafanagen.config.GlobalConfigRestoringExtension
+import com.xobotun.grafanagen.config.ModifiesGlobalConfig
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.api.extension.ExtendWith
 import kotlin.test.assertEquals
 
 /**
@@ -26,9 +31,11 @@ internal class SinglePanelLayoutTest {
     }
 
     @Test
+    @ModifiesGlobalConfig
     fun `AbstractPanel delegates to GlobalConfig when allotted space is below minimal`() {
         val layout = singlePanelSupplier()
-        assertThrows<ConfigException>("AbstractPanel should behave as specified in GlobalConfig when shrinks below minimal size") {
+        GLOBAL_CONFIG.layoutConfig.onLayoutMisfitHandler = dummyExceptionThrower
+        assertThrows<TestConfigException>("AbstractPanel should behave as specified in GlobalConfig when shrinks below minimal size") {
             layout.tryFitInto(1, 1)
         }
     }
@@ -64,7 +71,8 @@ internal class SinglePanelLayoutTest {
                 minWidth = 2, minHeight = 3, desiredWidth = 4, desiredHeight = 5
             )
         }
+        val dummyExceptionThrower = { _: Int, _: Int, _: Int -> throw TestConfigException() }
 
-        class ConfigException : Exception()
+        class TestConfigException : Exception()
     }
 }

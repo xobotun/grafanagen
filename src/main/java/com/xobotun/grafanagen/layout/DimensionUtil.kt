@@ -1,5 +1,7 @@
 package com.xobotun.grafanagen.layout
 
+import com.xobotun.grafanagen.config.GLOBAL_CONFIG
+import com.xobotun.grafanagen.config.GlobalConfig
 import com.xobotun.grafanagen.layout.AdjustmentResult.*
 
 /** Determines if there is a need to adjust width or height of a layout */
@@ -24,7 +26,7 @@ fun checkIfAdjustmentNeeded(min: Int, desired: Int, limit: Int) = when {
 fun adjustIfNeeded(min: Int, desired: Int, limit: Int,
                    onAjustmentNeeded: () -> Unit,
                    onFineAsIs: () -> Unit = {},
-                   onDoesNotFit: () -> Unit = {},
+                   onDoesNotFit: () -> Unit = { GLOBAL_CONFIG.layoutConfig.onLayoutMisfitHandler(min, desired, limit) },
 ) {
     when (checkIfAdjustmentNeeded(min, desired, limit)) {
         DOES_NOT_FIT -> onDoesNotFit()
